@@ -33,8 +33,6 @@ public class Main {
             //если в строке больше двух пробелов после замены регульрного выражения на такое же с пробелом
             throw new IOException("Выражение должно состоять только из двух операндов и одного опертаора");
         }
-//        System.out.println(in);
-
 
         String[] parts = in.split(" ");
         String part1 = parts[0];// первый операнд
@@ -92,7 +90,6 @@ public class Main {
             return RomanNumeral.contains(res);
 
         }
-
 
         int a = Integer.parseInt(part1); //перевод строки a в инт
         int b = Integer.parseInt(part3); //перевод b в инт
