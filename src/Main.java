@@ -4,18 +4,17 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        System.out.println(calc(System.in.toString()));
+        System.out.println("Введите арефметическое выражение из двух чисел от 1 до 10 типа: a + b, a - b, a * b, " +
+                "a / b , арабскими или римскими цифрами");
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+        System.out.println(calc(input));
 
     }
 
     public static String calc(String input) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Введите арефметическое выражение из двух чисел от 1 до 10 типа: a + b, a - b, a * b, " +
-                "a / b , арабскими или римскими цифрами");
-        String in = sc.nextLine();
-
-        if (!in.contains("+") && !in.contains("-")
-                && !in.contains("*") && !in.contains("/")) {
+        if (!input.contains("+") && !input.contains("-")
+                && !input.contains("*") && !input.contains("/")) {
             throw new IOException("не является математической операцией");
             //Если нет нужного оператора выбросить исключение
         }
@@ -23,18 +22,18 @@ public class Main {
         //разделяем строку на 2 операнда и 1 оператор
         //Удоляем пробелы из строки, добовляем по одному пробелу с кажд. стороны оператора.
         // Для корр. чтения "a+b" и "a + b"
-        in = in.replaceAll("\\s+", "");
-        in = in.replaceAll("\\*", " * ");
-        in = in.replaceAll("\\/", " / ");
-        in = in.replaceAll("\\+", " + ");
-        in = in.replaceAll("\\-", " - ");
+        input = input.replaceAll("\\s+", "");
+        input = input.replaceAll("\\*", " * ");
+        input = input.replaceAll("\\/", " / ");
+        input = input.replaceAll("\\+", " + ");
+        input = input.replaceAll("\\-", " - ");
 
-        if (in.length() - in.replaceAll(" ", "").length() > 2) {
+        if (input.length() - input.replaceAll(" ", "").length() > 2) {
             //если в строке больше двух пробелов после замены регульрного выражения на такое же с пробелом
             throw new IOException("Выражение должно состоять только из двух операндов и одного опертаора");
         }
 
-        String[] parts = in.split(" ");
+        String[] parts = input.split(" ");
         String part1 = parts[0];// первый операнд
         String sign2 = parts[1];// оператор
         String part3 = parts[2];// второй операнд
@@ -89,6 +88,7 @@ public class Main {
 
             return RomanNumeral.contains(res);
 
+
         }
 
         int a = Integer.parseInt(part1); //перевод строки a в инт
@@ -107,6 +107,7 @@ public class Main {
             default -> throw new IOException();
         };
         return Integer.toString(res);
+
 
     }
 
